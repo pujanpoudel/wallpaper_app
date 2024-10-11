@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper_app/widgets/wallpaper_actions.dart';
 
 class WallpaperPreviewScreen extends StatelessWidget {
   final String wallpaperUrl;

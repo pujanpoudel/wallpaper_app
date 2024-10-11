@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper_app/screens/category_screen.dart';
+import 'package:wallpaper_app/screens/favorite_screen.dart';
+import 'package:wallpaper_app/screens/featured_wallpaper.dart';
+import 'package:wallpaper_app/screens/nav_bar.dart';
+import 'package:wallpaper_app/screens/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    FeaturedWallpapers(),
-    SearchScreen(),
-    CategoriesScreen(),
-    FavoritesScreen(),
+    const FeaturedWallpapers(),
+    const SearchScreen(),
+    const CategoriesScreen(),
+    const FavoritesScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         child: _screens[_currentIndex],
       ),
       bottomNavigationBar: BottomNavBar(

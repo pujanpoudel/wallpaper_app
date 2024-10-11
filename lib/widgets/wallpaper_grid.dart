@@ -4,12 +4,12 @@ import 'package:wallpaper_app/screens/wallpaper_preview_screen.dart';
 class WallpaperGrid extends StatelessWidget {
   final bool showFavorites;
 
-  WallpaperGrid({this.showFavorites = false});
+  const WallpaperGrid({super.key, this.showFavorites = false});
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 0.7,
         mainAxisSpacing: 8.0,
@@ -22,7 +22,8 @@ class WallpaperGrid extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => WallpaperPreviewScreen(
-                  wallpaperUrl: 'https://example.com/wallpaper$index.jpg',
+                  wallpaperUrl:
+                      'https://images.unsplash.com/photo-1542397284385-6010376c5337?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 ),
               ),
             );
@@ -30,7 +31,7 @@ class WallpaperGrid extends StatelessWidget {
           child: Hero(
             tag: 'wallpaper$index',
             child: Image.network(
-              'https://example.com/wallpaper$index.jpg',
+              'https://images.unsplash.com/photo-1542397284385-6010376c5337?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               fit: BoxFit.cover,
             ),
           ),

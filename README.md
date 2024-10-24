@@ -50,7 +50,7 @@ flutter_wallpaper_app/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/pujanpoudel/wallpaper-app.git
+   git clone https://github.com/pujanpoudel/wallpaper_app.git
    cd wallpaper-app
    ```
 

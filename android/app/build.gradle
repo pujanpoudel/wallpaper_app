@@ -42,3 +42,6 @@ android {
 flutter {
     source = "../.."
 }
+dependencies {
+    implementation 'nz.mega.sdk:mSDK:6.0.0'
+}

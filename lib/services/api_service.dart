@@ -18,6 +18,10 @@ class ApiService {
   // Fetch wallpapers with optional search query and categories
   static Future<List<Wallpaper>> fetchWallpapers() async {
     try {
+      // Print the API URL to verify its correctness
+      print("Constructed API URL: $baseUrl");
+
+      // Send request and log response
       final response = await http.get(Uri.parse(baseUrl));
       print("API Response status: ${response.statusCode}");
       print("API Response body: ${response.body}");

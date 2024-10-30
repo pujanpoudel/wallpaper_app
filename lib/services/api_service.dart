@@ -12,31 +12,43 @@ class ApiService {
     return key;
   }
 
-  // Base URL for wallpaper search
-  static String baseUrl = 'https://wallhaven.cc/api/v1';
+  static String get baseUrl {
+    return 'https://wallhaven.cc/api/v1/search?apikey=$apiKey';
+  }
 
-  // Fetch wallpapers with optional search query and categories
   static Future<List<Wallpaper>> fetchWallpapers() async {
-    try {
-      // Print the API URL to verify its correctness
-      print("Constructed API URL: $baseUrl");
+    print("API URL: $baseUrl");
+    print("Using API Key: $apiKey");
 
-      // Send request and log response
+    try {
       final response = await http.get(Uri.parse(baseUrl));
+
       print("API Response status: ${response.statusCode}");
       print("API Response body: ${response.body}");
 
       if (response.statusCode == 200) {
-        List data = jsonDecode(response.body)['data'];
-        return data
-            .map((wallpaperJson) => Wallpaper.fromJson(wallpaperJson))
-            .toList();
+        final Map<String, dynamic> decodedBody = jsonDecode(response.body);
+
+        if (decodedBody.containsKey('data')) {
+          List data = decodedBody['data'];
+          print("Wallpapers fetched: ${data.length}");
+          return data
+              .map((wallpaperJson) => Wallpaper.fromJson(wallpaperJson))
+              .toList();
+        } else {
+          print("API response missing 'data' field.");
+          throw Exception('API response missing "data" field.');
+        }
+      } else if (response.statusCode == 404) {
+        print("Endpoint not found (404). Check the API URL.");
+        throw Exception('Endpoint not found (404). Check the API URL.');
       } else {
+        print("Failed to load wallpapers: ${response.statusCode}");
         throw Exception('Failed to load wallpapers: ${response.statusCode}');
       }
     } catch (e) {
       print("Error in fetchWallpapers: $e");
-      throw Exception('Failed to fetch wallpapers');
+      throw Exception('Failed to fetch wallpapers: $e');
     }
   }
 

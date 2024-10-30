@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:wallpaper_app/screens/home_screen.dart';
+import 'screens/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await dotenv.load(fileName: ".env");
-    print('API_KEY loaded: ${dotenv.env['API_KEY']}');
+    runApp(const WallpaperApp());
   } catch (e) {
-    print('Error loading .env file: $e');
+    print("Error loading .env file: $e");
   }
-
-  runApp(const WallpaperApp());
 }
 
 class WallpaperApp extends StatelessWidget {
